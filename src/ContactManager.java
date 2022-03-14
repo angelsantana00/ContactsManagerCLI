@@ -19,7 +19,7 @@ public class ContactManager {
         System.out.println("3. Search a contact by name.");
         System.out.println("4. Delete an existing contact.");
         System.out.println("5. Exit.");
-        System.out.print("Enter an option (1, 2, 3, 4 or 5):");
+        System.out.print("Enter an option [ 1 - 5 ]:");
         userOptions();
     }
 
@@ -30,10 +30,9 @@ public class ContactManager {
         if (userInput >= 1 && userInput <= 5) {
             return userInput;
         } else {
-            System.out.println("Please choose A valid number.");
+            System.out.println("Please Choose a Valid Number.");
             return userInput();
         }
-
     }
 
     public static void createFile(String contact) throws IOException {
@@ -47,13 +46,13 @@ public class ContactManager {
 
     public static String retrieveNewContact() {
         Scanner readInput = new Scanner(System.in);
-        System.out.print("Enter first name: ");
+        System.out.print("Enter First name: ");
         String firstName = readInput.next();
         System.out.print("Enter Last name: ");
         String lastName = readInput.next();
         System.out.print("Enter Phone Number: ");
         long phoneNumber = readInput.nextLong();
-        return firstName + lastName + phoneNumber;
+        return firstName + " " + lastName + " || " + phoneNumber;
 
     }
 
@@ -66,6 +65,7 @@ public class ContactManager {
         }
     }
 
+    // <================ SEARCH ================> //
     public static void search(String query) throws IOException {
         Path contactsPath = Paths.get("data", "info.txt");
         List<String> contactList = Files.readAllLines(contactsPath);
@@ -75,8 +75,8 @@ public class ContactManager {
                 System.out.println(element);
             }
         }
-
     }
+
 
     public static String getSearchInput(){
         Scanner in = new Scanner(System.in);
@@ -84,6 +84,8 @@ public class ContactManager {
         return in.nextLine();
     }
 
+
+    // <================ DELETE INC================> //
     public static void deleteContact(String query) throws IOException {
         Path contactsPath = Paths.get("data", "info.txt");
         List<String> contactList = Files.readAllLines(contactsPath);
@@ -92,7 +94,7 @@ public class ContactManager {
             if(element.contains(query)){
                 contactList.remove(element);
 
-                System.out.println(query + "Has been deleted");
+                System.out.println(query + " " + "Has been deleted");
             }
         }
 
@@ -111,7 +113,7 @@ public class ContactManager {
                     displayMenu();
                     continue;
                 case 3:search(getSearchInput());
-                    System.out.println("Search by name");
+                    System.out.println("Search by Name");
                     displayMenu();
                     continue;
                 case 4:deleteContact(getSearchInput());
@@ -127,6 +129,5 @@ public class ContactManager {
 
     public static void main(String[] args) throws IOException {
         displayMenu();
-
     }
 }

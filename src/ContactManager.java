@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 import static java.nio.file.Files.readAllLines;
 
-class ContactManager {
+public class ContactManager {
 
     public static void displayMenu() throws IOException {
         System.out.println("1. View contacts.");
